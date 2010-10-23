@@ -4,12 +4,17 @@
  * by: houdoken (houdoken [at] gmail [dot] com)
  */
 
+$(function() {
+  $("#original").keyup(kaleid);
+  kaleid(); // in case original text box is prepopulated.
+});
+
 function kaleid() {
-  var striz = document.f.original.value;
+  var striz = $("#original").val();
   var ref1 = "~";
   var ref2 = "÷";
   var gridText = makeGrid(striz, ref1, ':', ref2);
-  document.f.kaleidoscoped.value = gridText;
+  $("#kaleidoscoped").text(gridText);
 }
 
 
@@ -74,33 +79,25 @@ flipTable = {
 }
 
 
-function reverseString(aString)
-{
+function reverseString(aString) {
   var aRevString = "";
   for (var count=aString.length; count >=0; count--)
     aRevString+=aString.substring(count,count-1);
   return aRevString;
 }
 
-function flipString(aString)
-{
+function flipString(aString) {
   var last = aString.length - 1;
   var result = new Array(aString.length);
-  for (var count = last; count >=0; --count)
-  {
+  for (var count = last; count >=0; --count) {
     var c = aString.charAt(count);
     var r = flipTable[c];
     result[last - count] = r != undefined ? r : c
   }
-
-
-
   return result.join('');
-
 }
 
-function makeGrid(aString, aPool, aMirror, aCenter)
-{
+function makeGrid(aString, aPool, aMirror, aCenter) {
   var quad2 = aString;
   var quad1 = reverseString(quad2);
   var quad3 = flipString(quad1);
@@ -111,7 +108,6 @@ function makeGrid(aString, aPool, aMirror, aCenter)
     pool+=aPool;
   var pool = pool + aCenter + pool;
   var mirror = " " + aMirror + " ";
-  var gridText = quad2 + mirror + quad1 + "\r" + pool + "\r" + quad3 + mirror + quad4;
+  var gridText = quad2 + mirror + quad1 + "\r\n" + pool + "\r\n" + quad3 + mirror + quad4;
   return gridText;
 }
-
