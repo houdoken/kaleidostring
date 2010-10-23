@@ -12,7 +12,7 @@ $(function() {
 function kaleid() {
   var striz = $("#original").val();
   var ref1 = "~";
-  var ref2 = "÷";
+  var ref2 = '\u00F7';
   var gridText = makeGrid(striz, ref1, ':', ref2);
   $("#kaleidoscoped").text(gridText);
 }
