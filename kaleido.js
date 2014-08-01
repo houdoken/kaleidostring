@@ -92,7 +92,7 @@ function flipString(aString) {
   for (var count = last; count >=0; --count) {
     var c = aString.charAt(count);
     var r = flipTable[c];
-    result[last - count] = r != undefined ? r : c
+    result[last - count] = r !== undefined ? r : c;
   }
   return result.join('');
 }
@@ -106,8 +106,8 @@ function makeGrid(aString, aPool, aMirror, aCenter) {
   var gridText = "";
   for (var count = quad2.length; count >=0; count--)
     pool+=aPool;
-  var pool = pool + aCenter + pool;
+  pool = pool + aCenter + pool;
   var mirror = " " + aMirror + " ";
-  var gridText = quad2 + mirror + quad1 + "\r\n" + pool + "\r\n" + quad3 + mirror + quad4;
+  gridText = quad2 + mirror + quad1 + "\r\n" + pool + "\r\n" + quad3 + mirror + quad4;
   return gridText;
 }
